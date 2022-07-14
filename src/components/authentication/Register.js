@@ -8,16 +8,22 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import {instaLogo} from '../utils/userImage';
 import {createUser} from '../../server/apis/user';
+import * as ImagePicker from 'react-native-image-picker';
+import {getApps, initializeApp} from 'firebase/app';
+import {ref, uploadBytes, getDownloadURL, getStorage} from 'firebase/storage';
+import {firebaseConfig} from '../../firebase/firebase';
 
 const Register = ({navigation}) => {
   const [formState, setFormState] = useState({
     name: '',
     phoneNumber: '',
     password: '',
+    profilePic: '',
   });
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState('');
+  const [imageUri, setImageUri] = useState('');
 
   const setFields = (key, value) => {
     setFormState({...formState, [key]: value});
@@ -36,6 +42,83 @@ const Register = ({navigation}) => {
       console.log(error.message);
     }
   };
+
+  if (!getApps().length) {
+    initializeApp(firebaseConfig);
+  }
+
+  const openCamera = async () => {
+    let pickerResult = await ImagePicker.launchImageLibrary({
+      allowsEditing: true,
+      aspect: [4, 3],
+      mediaType: 'mixed',
+    });
+
+    setImageUri(pickerResult);
+    if (pickerResult.assets[0].uri) {
+      // setUpload(true);
+      console.log(pickerResult);
+    }
+  };
+
+  const uploadImage = () => {
+    handleImagePicked(imageUri);
+  };
+
+  const handleImagePicked = async pickerResult => {
+    // setLoading(true)
+    try {
+      if (!pickerResult.cancelled) {
+        const uploadUrl = await uploadImageAsync(pickerResult.assets[0].uri);
+        console.log(4);
+        setImage(uploadUrl);
+        setFields('profilePic', uploadUrl);
+
+        // setUpload(false);
+        alert('Image uploaded successfully');
+
+        // setTimeout(() => {
+        //   setProgress(0);
+        // }, 2000);
+      }
+      // setLoading(false)
+      // setChangeButton(true)
+    } catch (e) {
+      // setLoading(false)
+      alert(e.message);
+    } finally {
+      // setUpload(false)
+    }
+  };
+
+  async function uploadImageAsync(uri) {
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        reject(new TypeError('Network request failed'));
+      };
+
+      xhr.responseType = 'blob';
+      console.log(1);
+      xhr.open('GET', uri, true);
+      console.log(2);
+      xhr.send(null);
+    });
+    const fileRef = ref(
+      getStorage(),
+      `UserProfile/${imageUri.assets[0].fileName}`,
+    );
+    console.log(5);
+    const result = await uploadBytes(fileRef, blob);
+
+    // We're done with the blob, close and release it
+    blob.close();
+
+    return await getDownloadURL(fileRef);
+  }
 
   return (
     <View style={styles.main}>
@@ -66,6 +149,13 @@ const Register = ({navigation}) => {
           onChangeText={password => setFields('password', password)}
           style={styles.input}
         />
+        <Pressable onPress={() => uploadImage()} style={styles.input}>
+          <Text>Upload Image</Text>
+        </Pressable>
+
+        <Pressable onPress={() => openCamera()} style={styles.input}>
+          <Text>Choose Image</Text>
+        </Pressable>
       </View>
       <View style={styles.signUp}>
         <Pressable

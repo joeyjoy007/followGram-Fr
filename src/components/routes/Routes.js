@@ -11,7 +11,7 @@ import {Storage} from '../../storage/Storage';
 import RootStackScreen from '../../rootStackScreen/RootStackScreen';
 import {loginUser} from '../../server/apis/user';
 import Followers from '../showFollweersAndFollowing/Followers';
-import Followings from '../showFollweersAndFollowing/Followings';
+import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 
 const Stack = createNativeStackNavigator();
 const Routes = () => {
@@ -145,7 +145,6 @@ const Routes = () => {
             <Stack.Screen name="RealSearch" component={RealSearch} />
             <Stack.Screen name="SearchedUser" component={SearchedUser} />
             <Stack.Screen name="Followers" component={Followers} />
-            <Stack.Screen name="Following" component={Followings} />
           </>
         ) : (
           <Stack.Screen name="Auth" component={RootStackScreen} />

@@ -19,7 +19,7 @@ import {userInfo} from '../../userInfo/userInfo';
 const SearchedUser = ({route}) => {
   const {_id} = route.params.details;
 
-  const [follow, setFollow] = useState(false);
+  const [follow, setFollow] = useState(null);
   const [userDetail, setUserDetail] = useState(null);
   const [stateConstant, setStateConstant] = useState(0);
   const [length, setLength] = useState({following: '', follower: ''});
@@ -34,11 +34,15 @@ const SearchedUser = ({route}) => {
           following: user.payload.following.length,
           follower: user.payload.follower.length,
         });
-        if (user.payload.follower.includes(info.user._id) === true) {
+        const u = user.payload.follower.find(u => u._id === info.user._id);
+        if (u._id !== undefined) {
           setFollow(true);
         } else {
           setFollow(false);
         }
+        // if (user.payload.follower.includes(info.user._id)) {
+        //   setFollow(true);
+        // }
         return user;
       } catch (error) {
         console.log(error.message);

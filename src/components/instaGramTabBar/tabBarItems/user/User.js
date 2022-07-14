@@ -12,6 +12,7 @@ import {userData} from '../../../utils/UserData';
 import {userInfo} from '../../../../userInfo/userInfo';
 import AddUser from 'react-native-vector-icons/Feather';
 import {fetchSingleUser} from '../../../../server/apis/user';
+import TopBar from '../../bottomTabBar/mainField/TopBar';
 
 const User = ({route, navigation}) => {
   const [userDetail, setUserDetail] = useState(null);
@@ -55,9 +56,9 @@ const User = ({route, navigation}) => {
 
   return (
     <>
-      {userDetail !== null ? (
+      {userDetail === null ? (
         <View style={styles.main}>
-          <View style={styles.profile}>
+          {/* <View style={styles.profile}>
             <View>
               <Image
                 source={{uri: userDetail.profilePic}}
@@ -114,7 +115,9 @@ const User = ({route, navigation}) => {
             <View style={styles.edit}>
               <AddUser style={[styles.editProfile]} name="user-plus" />
             </View>
-          </View>
+          </View> */}
+
+          <TopBar />
         </View>
       ) : (
         <ActivityIndicator

@@ -16,7 +16,7 @@ const Followers = ({navigation, route}) => {
   const [Users, setUsers] = useState(null);
 
   const {users} = route.params;
-  console.log(users);
+
   // const findUser = e => {
   //   setSearchText(e);
 

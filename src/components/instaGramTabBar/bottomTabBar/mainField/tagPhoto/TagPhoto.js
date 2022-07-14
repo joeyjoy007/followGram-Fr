@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Followings = () => {
+const TagPhoto = () => {
   return (
     <View>
-      <Text>Followings</Text>
+      <Text>TagPhoto</Text>
     </View>
   );
 };
 
-export default Followings;
+export default TagPhoto;
 
 const styles = StyleSheet.create({});
