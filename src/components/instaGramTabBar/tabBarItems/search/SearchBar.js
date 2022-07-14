@@ -23,7 +23,7 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
   search: {
-    height: 25,
+    height: 30,
     borderRadius: 4,
     // justifyContent: 'center',
     backgroundColor: '#808080',

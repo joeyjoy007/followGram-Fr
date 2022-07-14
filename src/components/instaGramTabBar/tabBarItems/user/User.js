@@ -79,17 +79,23 @@ const User = ({route, navigation}) => {
             <Pressable
               onPress={() =>
                 navigation.navigate('Followers', {
-                  users: userDetail,
+                  users: userDetail.following,
                 })
               }
               style={styles.items}>
               <Text style={[styles.text]}>{userDetail.following.length}</Text>
               <Text style={styles.item}>Following</Text>
             </Pressable>
-            <View style={styles.items}>
+            <Pressable
+              onPress={() =>
+                navigation.navigate('Followers', {
+                  users: userDetail.follower,
+                })
+              }
+              style={styles.items}>
               <Text style={[styles.text]}>{userDetail.follower.length}</Text>
               <Text style={styles.item}>Followers</Text>
-            </View>
+            </Pressable>
           </View>
 
           <View

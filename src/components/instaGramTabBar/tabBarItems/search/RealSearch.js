@@ -99,7 +99,7 @@ export default RealSearch;
 
 const styles = StyleSheet.create({
   search: {
-    height: 25,
+    height: 30,
     borderRadius: 4,
     backgroundColor: '#808080',
     display: 'flex',

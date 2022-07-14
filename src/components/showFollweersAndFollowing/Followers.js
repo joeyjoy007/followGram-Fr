@@ -16,7 +16,7 @@ const Followers = ({navigation, route}) => {
   const [Users, setUsers] = useState(null);
 
   const {users} = route.params;
-  console.log(users.following);
+  console.log(users);
   // const findUser = e => {
   //   setSearchText(e);
 
@@ -38,6 +38,11 @@ const Followers = ({navigation, route}) => {
   //       details: item,
   //     });
   //   };
+  const jumpToUser = item => {
+    navigation.navigate('SearchedUser', {
+      details: item,
+    });
+  };
 
   const renderUsers = ({item}) => {
     // console.log('ITEM', item);
@@ -78,7 +83,7 @@ const Followers = ({navigation, route}) => {
       /> */}
 
       <FlatList
-        data={users.following}
+        data={users}
         keyExtractor={item => item._id}
         renderItem={renderUsers}
       />
