@@ -27,7 +27,7 @@ const SearchedUser = ({route, navigation}) => {
   const [follow, setFollow] = useState(null);
   const [userDetail, setUserDetail] = useState(null);
   const [stateConstant, setStateConstant] = useState(0);
-  const [length, setLength] = useState({following: '', follower: ''});
+  const [length, setLength] = useState({following: '', follower: '', post: ''});
 
   useEffect(() => {
     let fetchUser = async () => {
@@ -38,6 +38,7 @@ const SearchedUser = ({route, navigation}) => {
         setLength({
           following: user.payload.following.length,
           follower: user.payload.follower.length,
+          post: user.payload.post.length,
         });
         const u = user.payload.follower.find(u => u._id === info.user._id);
         if (u._id !== undefined) {
@@ -117,7 +118,7 @@ const SearchedUser = ({route, navigation}) => {
               </Text>
             </View>
             <View style={styles.items}>
-              <Text style={[styles.text]}>{userDetail.post}</Text>
+              <Text style={[styles.text]}>{length.post}</Text>
               <Text style={styles.item}>Posts</Text>
             </View>
             <View style={styles.items}>

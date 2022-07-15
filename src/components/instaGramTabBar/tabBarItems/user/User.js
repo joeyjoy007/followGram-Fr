@@ -92,7 +92,7 @@ const User = ({route, navigation}) => {
               </Text>
             </View>
             <View style={styles.items}>
-              <Text style={[styles.text]}>{userDetail.post}</Text>
+              <Text style={[styles.text]}>{userDetail.post.length}</Text>
               <Text style={styles.item}>Posts</Text>
             </View>
             <Pressable

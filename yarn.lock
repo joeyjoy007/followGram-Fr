@@ -1809,6 +1809,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.2.4.tgz#8d88adceeb32f7997a122feba48d7186fca80346"
   integrity sha512-uY51UoipQW4ELnFWMU6rTHRc4EUYaW+Z1O9Teijej6NYVYdUcUKq+t7WeBGjMAEc1ipyooMeBqRXToWO5zAU2Q==
 
+"@react-native-community/toolbar-android@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/toolbar-android/-/toolbar-android-0.2.1.tgz#5d021da8f6aef9412c58d5c981a62b91191af3fe"
+  integrity sha512-kq1jVuJTSnKvqiyFqHp0hNLfntZRdE16heQI2UbE7dUUI0pR7YIoBoRlnt8x5ivJJ/f6m1Dcidku9LkwtcUs6w==
+
 "@react-native-masked-view/masked-view@^0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@react-native-masked-view/masked-view/-/masked-view-0.2.6.tgz#b26c52d5db3ad0926b13deea79c69620966a9221"
@@ -6413,6 +6418,11 @@ react-native-stories-media@^0.0.7:
     react-native-vector-icons "^6.6.0"
     react-native-video "^5.1.0-alpha8"
     react-native-webview "^10.9.3"
+
+react-native-stories-view@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-stories-view/-/react-native-stories-view-1.0.9.tgz#87e3624b8be9267d548a50993f85f3a74d29fe9e"
+  integrity sha512-xvQTW3Ge1+44mB/yzJOdz/pP01Lv8bEGz+p7mDs0HVWz0tlJhhrZSL3+f0temeteJy2DYjKtFeaZ/SUaU81/vQ==
 
 react-native-svg@^12.3.0:
   version "12.3.0"
