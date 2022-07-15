@@ -206,7 +206,7 @@ const SearchedUser = ({route, navigation}) => {
           </ScrollView>
 
           <View style={{marginTop: 10}}>
-            <TopBar />
+            <TopBar postUrl={userDetail.post} />
           </View>
         </View>
       ) : (

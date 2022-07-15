@@ -21,6 +21,7 @@ import {DrawerActions} from '@react-navigation/native';
 const User = ({route, navigation}) => {
   const [userDetail, setUserDetail] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   // useEffect(() => {
   //   const fetchUser = async () => {
@@ -74,6 +75,8 @@ const User = ({route, navigation}) => {
         }
         backFunction={() => navigation.goBack()}
         openDrawer={() => navigation.dispatch(DrawerActions.openDrawer())}
+        addPost={() => setShowAdd(!showAdd)}
+        showAdd={showAdd}
       />
       {userDetail !== null ? (
         <View style={styles.main}>
