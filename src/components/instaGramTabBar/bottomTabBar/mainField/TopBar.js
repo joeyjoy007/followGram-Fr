@@ -17,6 +17,9 @@ const TopBar = () => {
           tabBarStyle: {
             backgroundColor: '00FFFFFF',
           },
+          tabBarIndicatorStyle: {
+            backgroundColor: '#ffffff',
+          },
         }}>
         <Tab.Screen
           name="PhotosGrid"

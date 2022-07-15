@@ -1,18 +1,21 @@
 import {
   ActivityIndicator,
+  FlatList,
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {userImage} from '../../../utils/userImage';
-import {userData} from '../../../utils/UserData';
+import React, {useState} from 'react';
 import {userInfo} from '../../../../userInfo/userInfo';
 import AddUser from 'react-native-vector-icons/Feather';
 import {fetchSingleUser} from '../../../../server/apis/user';
 import TopBar from '../../bottomTabBar/mainField/TopBar';
+import Add from 'react-native-vector-icons/AntDesign';
+import HeaderBar from '../../../headerBar/HeaderBar';
+import {headerTitleStyle} from '../../../utils/constants';
 
 const User = ({route, navigation}) => {
   const [userDetail, setUserDetail] = useState(null);
@@ -54,11 +57,24 @@ const User = ({route, navigation}) => {
     return unsubscribe;
   }, [navigation]);
 
+  const data = [1, 4];
+
   return (
     <>
-      {userDetail === null ? (
+      <HeaderBar
+        back
+        post={true}
+        menu={true}
+        title={
+          <Text style={[headerTitleStyle, {fontStyle: 'italic'}]}>
+            {userDetail !== null ? userDetail.name : 'followgram user'}
+          </Text>
+        }
+        backFunction={() => navigation.goBack()}
+      />
+      {userDetail !== null ? (
         <View style={styles.main}>
-          {/* <View style={styles.profile}>
+          <View style={styles.profile}>
             <View>
               <Image
                 source={{uri: userDetail.profilePic}}
@@ -81,6 +97,7 @@ const User = ({route, navigation}) => {
               onPress={() =>
                 navigation.navigate('Followers', {
                   users: userDetail.following,
+                  name: 'Following',
                 })
               }
               style={styles.items}>
@@ -91,6 +108,7 @@ const User = ({route, navigation}) => {
               onPress={() =>
                 navigation.navigate('Followers', {
                   users: userDetail.follower,
+                  name: 'Followers',
                 })
               }
               style={styles.items}>
@@ -115,9 +133,56 @@ const User = ({route, navigation}) => {
             <View style={styles.edit}>
               <AddUser style={[styles.editProfile]} name="user-plus" />
             </View>
-          </View> */}
+          </View>
 
-          <TopBar />
+          <ScrollView horizontal>
+            <View
+              style={{
+                marginTop: 30,
+                flexDirection: 'row',
+              }}>
+              {data.map(e => {
+                return (
+                  <View style={{height: 'auto', width: 80}} key={e}>
+                    <View
+                      style={{
+                        borderWidth: 1,
+                        borderColor: 'red',
+                        height: 70,
+                        width: 70,
+                        borderRadius: 35,
+                        justifyContent: 'center',
+                      }}>
+                      <View
+                        style={{
+                          borderWidth: 1,
+                          borderColor: 'red',
+                          height: 65,
+                          width: 65,
+                          borderRadius: 32.5,
+                          alignSelf: 'center',
+                        }}></View>
+                    </View>
+                  </View>
+                );
+              })}
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'red',
+                  height: 70,
+                  width: 70,
+                  borderRadius: 35,
+                  justifyContent: 'center',
+                }}>
+                <Add name="plus" style={{alignSelf: 'center'}} size={28} />
+              </View>
+            </View>
+          </ScrollView>
+
+          <View style={{marginTop: 10}}>
+            <TopBar />
+          </View>
         </View>
       ) : (
         <ActivityIndicator

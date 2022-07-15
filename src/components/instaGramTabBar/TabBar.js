@@ -11,62 +11,65 @@ import VideoIcon from 'react-native-vector-icons/Ionicons';
 import LikeIcon from 'react-native-vector-icons/AntDesign';
 import UserIcon from 'react-native-vector-icons/Feather';
 import SearchBar from './tabBarItems/search/SearchBar';
+import HeaderBar from '../headerBar/HeaderBar';
 
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-      }}>
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <HomeIcon name="home" color={color} size={size} />
-          ),
-        }}
-        name="Home"
-        component={Home}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <SearchIcon name="md-search-sharp" color={color} size={size} />
-          ),
-        }}
-        name="Search"
-        component={SearchBar}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <VideoIcon name="videocam-outline" color={color} size={size} />
-          ),
-        }}
-        name="Reels"
-        component={Reels}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <LikeIcon name="hearto" color={color} size={21} />
-          ),
-        }}
-        name="Likes"
-        component={Likes}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({color, size}) => (
-            <UserIcon name="user" color={color} size={size} />
-          ),
-        }}
-        name="User"
-        component={User}
-      />
-    </Tab.Navigator>
+    <>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+        }}>
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <HomeIcon name="home" color={color} size={size} />
+            ),
+          }}
+          name="Home"
+          component={Home}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <SearchIcon name="md-search-sharp" color={color} size={size} />
+            ),
+          }}
+          name="Search"
+          component={SearchBar}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <VideoIcon name="videocam-outline" color={color} size={size} />
+            ),
+          }}
+          name="Reels"
+          component={Reels}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <LikeIcon name="hearto" color={color} size={21} />
+            ),
+          }}
+          name="Likes"
+          component={Likes}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <UserIcon name="user" color={color} size={size} />
+            ),
+          }}
+          name="User"
+          component={User}
+        />
+      </Tab.Navigator>
+    </>
   );
 };
 

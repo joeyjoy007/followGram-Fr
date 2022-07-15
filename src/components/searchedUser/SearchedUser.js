@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,6 +16,8 @@ import {
   unFollowUser,
 } from '../../server/apis/user';
 import {userInfo} from '../../userInfo/userInfo';
+import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
+import Add from 'react-native-vector-icons/AntDesign';
 
 const SearchedUser = ({route}) => {
   const {_id} = route.params.details;
@@ -79,6 +82,8 @@ const SearchedUser = ({route}) => {
       console.log(error.message);
     }
   };
+
+  const data = [1, 4];
   return (
     <>
       {userDetail !== null ? (
@@ -140,6 +145,54 @@ const SearchedUser = ({route}) => {
             <View style={styles.edit}>
               <AddUser style={[styles.editProfile]} name="user-plus" />
             </View>
+          </View>
+          <ScrollView horizontal>
+            <View
+              style={{
+                marginTop: 30,
+                flexDirection: 'row',
+              }}>
+              {data.map(e => {
+                return (
+                  <View style={{height: 'auto', width: 80}} key={e}>
+                    <View
+                      style={{
+                        borderWidth: 1,
+                        borderColor: 'red',
+                        height: 70,
+                        width: 70,
+                        borderRadius: 35,
+                        justifyContent: 'center',
+                      }}>
+                      <View
+                        style={{
+                          borderWidth: 1,
+                          borderColor: 'red',
+                          height: 65,
+                          width: 65,
+                          borderRadius: 32.5,
+                          alignSelf: 'center',
+                        }}></View>
+                    </View>
+                  </View>
+                );
+              })}
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'red',
+                  height: 70,
+                  width: 70,
+                  borderRadius: 35,
+                  justifyContent: 'center',
+                }}>
+                <Add name="plus" style={{alignSelf: 'center'}} size={28} />
+              </View>
+            </View>
+          </ScrollView>
+
+          <View style={{marginTop: 10}}>
+            <TopBar />
           </View>
         </View>
       ) : (

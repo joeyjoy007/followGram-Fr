@@ -43,8 +43,6 @@ export default PhotosGrid;
 
 const styles = StyleSheet.create({
   main: {
-    borderWidth: 1,
-    borderColor: 'red',
     flexDirection: 'row',
     flexWrap: 'wrap',
   },

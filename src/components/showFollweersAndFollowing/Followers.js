@@ -10,34 +10,15 @@ import {
 import React, {useState} from 'react';
 import {searchUser} from '../../server/apis/user';
 import {userData} from '../utils/UserData';
+import HeaderBar from '../headerBar/HeaderBar';
+import {headerTitleStyle} from '../utils/constants';
 
 const Followers = ({navigation, route}) => {
   const [searchText, setSearchText] = useState('');
   const [Users, setUsers] = useState(null);
 
-  const {users} = route.params;
+  const {users, name} = route.params;
 
-  // const findUser = e => {
-  //   setSearchText(e);
-
-  //   const users = userData.filter(
-  //     user => user.name.charAt(e.length - 1) === e.charAt(e.length - 1),
-  //   );
-  //   if (users.length > 0) {
-  //     setUsers(users);
-  //     if (e.length === 0) {
-  //       setUsers(null);
-  //     }
-  //   } else {
-  //     setUsers('no user found');
-  //   }
-  // };
-
-  //   const jumpToUser = item => {
-  //     navigation.navigate('SearchedUser', {
-  //       details: item,
-  //     });
-  //   };
   const jumpToUser = item => {
     navigation.navigate('SearchedUser', {
       details: item,
@@ -75,19 +56,28 @@ const Followers = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.main}>
-      {/* <TextInput
+    <>
+      <HeaderBar
+        backFunction={() => navigation.goBack()}
+        back
+        title={
+          <Text style={[headerTitleStyle, {fontStyle: 'italic'}]}>{name}</Text>
+        }
+      />
+      <View style={styles.main}>
+        {/* <TextInput
         style={styles.search}
         placeholder="Search"
         onChangeText={text => findUser(text)}
       /> */}
 
-      <FlatList
-        data={users}
-        keyExtractor={item => item._id}
-        renderItem={renderUsers}
-      />
-    </View>
+        <FlatList
+          data={users}
+          keyExtractor={item => item._id}
+          renderItem={renderUsers}
+        />
+      </View>
+    </>
   );
 };
 
@@ -103,7 +93,7 @@ const styles = StyleSheet.create({
     paddingVertical: -10,
   },
   main: {
-    paddingVertical: 10,
+    paddingVertical: 0,
     paddingHorizontal: 20,
   },
   searchText: {
