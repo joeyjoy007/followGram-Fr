@@ -8,7 +8,7 @@ import Tag from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopBar = () => {
+const TopBar = ({postUrl}) => {
   return (
     <View style={{height: 400}}>
       <Tab.Navigator
@@ -27,9 +27,9 @@ const TopBar = () => {
             tabBarIcon: ({color, size}) => (
               <Grid name="grid-outline" color={color} size={20} />
             ),
-          }}
-          component={PhotosGrid}
-        />
+          }}>
+          {props => <PhotosGrid {...props} postUrl={postUrl} />}
+        </Tab.Screen>
         <Tab.Screen
           options={{
             tabBarIcon: ({color, size}) => (

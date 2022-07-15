@@ -45,6 +45,7 @@ const User = ({route, navigation}) => {
         try {
           const info = await userInfo;
           const user = await fetchSingleUser({_id: info.user._id});
+          console.log(user.payload.post[0]);
           setUserDetail(user.payload);
           return user;
         } catch (error) {
@@ -183,7 +184,7 @@ const User = ({route, navigation}) => {
           </ScrollView>
 
           <View style={{marginTop: 10}}>
-            <TopBar />
+            <TopBar postUrl={userDetail.post} />
           </View>
         </View>
       ) : (

@@ -1,6 +1,7 @@
 import {
   Dimensions,
   FlatList,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-const PhotosGrid = () => {
+const PhotosGrid = ({postUrl}) => {
   const data = [1, 2, 3, 4, 5, 6, 7];
 
   const borderWidth = Dimensions.get('screen').width;
@@ -17,12 +18,12 @@ const PhotosGrid = () => {
   return (
     <ScrollView>
       <View style={styles.main}>
-        {data.map(e => {
+        {postUrl.map(e => {
           return (
             <View
               style={{
-                borderWidth: 1,
-                borderColor: 'red',
+                // borderWidth: 1,
+                // borderColor: 'red',
                 width: imageWidth - 18,
                 flexWrap: 'wrap',
                 marginLeft: 3.0,
@@ -30,7 +31,14 @@ const PhotosGrid = () => {
                 marginTop: 3,
               }}
               key={e}>
-              <Text>hello</Text>
+              <Image
+                style={{
+                  width: imageWidth - 18,
+                  height: imageWidth - 18,
+                  resizeMode: 'cover',
+                }}
+                source={{uri: e.postAddressUrl}}
+              />
             </View>
           );
         })}
