@@ -12,6 +12,7 @@ const HeaderBar = ({
   backFunction,
   openDrawer,
   addPost,
+  backgroundColor,
 }) => {
   const widths = Dimensions.get('screen').width;
   return (
@@ -23,6 +24,7 @@ const HeaderBar = ({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 15,
+        backgroundColor: backgroundColor,
       }}>
       <View style={{flexDirection: 'row'}}>
         {back && (

@@ -16,6 +16,7 @@ import TopBar from '../../bottomTabBar/mainField/TopBar';
 import Add from 'react-native-vector-icons/AntDesign';
 import HeaderBar from '../../../headerBar/HeaderBar';
 import {headerTitleStyle} from '../../../utils/constants';
+import {DrawerActions} from '@react-navigation/native';
 
 const User = ({route, navigation}) => {
   const [userDetail, setUserDetail] = useState(null);
@@ -71,6 +72,7 @@ const User = ({route, navigation}) => {
           </Text>
         }
         backFunction={() => navigation.goBack()}
+        openDrawer={() => navigation.dispatch(DrawerActions.openDrawer())}
       />
       {userDetail !== null ? (
         <View style={styles.main}>

@@ -13,6 +13,7 @@ import {loginUser} from '../../server/apis/user';
 import Followers from '../showFollweersAndFollowing/Followers';
 import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 import HeaderBar from '../headerBar/HeaderBar';
+import Drawer from '../drawer/Drawer';
 
 const Stack = createNativeStackNavigator();
 const Routes = () => {
@@ -147,6 +148,7 @@ const Routes = () => {
             <Stack.Screen name="SearchedUser" component={SearchedUser} />
             <Stack.Screen name="Followers" component={Followers} />
             <Stack.Screen name="HeaderBar" component={HeaderBar} />
+            <Stack.Screen name="Drawer" component={Drawer} />
           </>
         ) : (
           <Stack.Screen name="Auth" component={RootStackScreen} />

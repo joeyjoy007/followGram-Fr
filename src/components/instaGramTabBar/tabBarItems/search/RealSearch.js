@@ -12,6 +12,7 @@ import SearchIcon from 'react-native-vector-icons/EvilIcons';
 import {userData} from '../../../utils/UserData';
 import {userImage} from '../../../utils/userImage';
 import {searchUser} from '../../../../server/apis/user';
+import HeaderBar from '../../../headerBar/HeaderBar';
 
 const RealSearch = ({navigation}) => {
   const [searchText, setSearchText] = useState('');
@@ -79,19 +80,22 @@ const RealSearch = ({navigation}) => {
   };
 
   return (
-    <View style={styles.main}>
-      <TextInput
-        style={styles.search}
-        placeholder="Search"
-        onChangeText={text => findUser(text)}
-      />
+    <>
+      <HeaderBar back backFunction={() => navigation.goBack()} />
+      <View style={styles.main}>
+        <TextInput
+          style={styles.search}
+          placeholder="Search"
+          onChangeText={text => findUser(text)}
+        />
 
-      <FlatList
-        data={Users}
-        keyExtractor={item => item._id}
-        renderItem={renderUsers}
-      />
-    </View>
+        <FlatList
+          data={Users}
+          keyExtractor={item => item._id}
+          renderItem={renderUsers}
+        />
+      </View>
+    </>
   );
 };
 

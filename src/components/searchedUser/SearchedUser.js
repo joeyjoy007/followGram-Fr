@@ -18,8 +18,10 @@ import {
 import {userInfo} from '../../userInfo/userInfo';
 import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 import Add from 'react-native-vector-icons/AntDesign';
+import HeaderBar from '../headerBar/HeaderBar';
+import {headerTitleStyle} from '../utils/constants';
 
-const SearchedUser = ({route}) => {
+const SearchedUser = ({route, navigation}) => {
   const {_id} = route.params.details;
 
   const [follow, setFollow] = useState(null);
@@ -86,6 +88,17 @@ const SearchedUser = ({route}) => {
   const data = [1, 4];
   return (
     <>
+      <HeaderBar
+        back
+        // post={true}
+        // menu={true}
+        title={
+          <Text style={[headerTitleStyle, {fontStyle: 'italic'}]}>
+            {userDetail !== null ? userDetail.name : 'followgram user'}
+          </Text>
+        }
+        backFunction={() => navigation.goBack()}
+      />
       {userDetail !== null ? (
         <View style={styles.main}>
           <View style={styles.profile}>
