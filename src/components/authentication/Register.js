@@ -58,7 +58,6 @@ const Register = ({navigation}) => {
     setImageUri(pickerResult);
     if (pickerResult.assets[0].uri) {
       // setUpload(true);
-      console.log(pickerResult);
     }
   };
 

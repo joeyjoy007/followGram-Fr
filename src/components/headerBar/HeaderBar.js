@@ -30,7 +30,6 @@ const HeaderBar = ({
     });
 
     if (pickerResult.assets[0].uri) {
-      console.log(pickerResult.assets[0].uri);
       setImageUri(pickerResult.assets[0].uri);
       navigation.navigate('Image', {
         imageUrl: pickerResult,

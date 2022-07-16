@@ -31,7 +31,6 @@ const AfterImageAdd = ({navigation, route}) => {
   };
   useEffect(() => {
     if (isUploaded === true) {
-      console.log(isUploaded);
       navigation.navigate('User');
     }
   }, [isUploaded]);

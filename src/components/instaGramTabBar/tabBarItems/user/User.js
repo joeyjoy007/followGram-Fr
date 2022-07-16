@@ -53,7 +53,7 @@ const User = ({route, navigation}) => {
               flexDirection: 'row',
               alignSelf: 'center',
             }}>
-            <Close name="closecircleo" style={{color: '#ffffff'}} size={25} />
+            <Close name="downcircleo" style={{color: '#ffffff'}} size={25} />
           </Pressable>
           <View style={{paddingHorizontal: 0, paddingVertical: 15}}>
             <View style={{flexDirection: 'row'}}>
