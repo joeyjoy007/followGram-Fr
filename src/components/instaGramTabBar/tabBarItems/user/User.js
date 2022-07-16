@@ -246,7 +246,7 @@ const User = ({route, navigation}) => {
           </ScrollView>
 
           <View style={{marginTop: 10}}>
-            <TopBar postUrl={userDetail.post} />
+            <TopBar postUrl={userDetail.post} reelUrl={userDetail.reels} />
           </View>
         </View>
       ) : (

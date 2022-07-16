@@ -19,6 +19,8 @@ target 'followGram' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-create-thumbnail', :path => '../node_modules/react-native-create-thumbnail'
+
   target 'followGramTests' do
     inherit! :complete
     # Pods for testing

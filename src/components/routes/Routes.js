@@ -15,6 +15,7 @@ import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 import HeaderBar from '../headerBar/HeaderBar';
 import Drawer from '../drawer/Drawer';
 import AfterImageAdd from '../instaGramTabBar/tabBarItems/user/AfterImageAdd';
+import ReelsPage from '../instaGramTabBar/bottomTabBar/mainField/reels/ReelsPage';
 
 const Stack = createNativeStackNavigator();
 const Routes = () => {
@@ -151,6 +152,7 @@ const Routes = () => {
             <Stack.Screen name="Followers" component={Followers} />
             <Stack.Screen name="HeaderBar" component={HeaderBar} />
             <Stack.Screen name="Image" component={AfterImageAdd} />
+            <Stack.Screen name="ReelsPage" component={ReelsPage} />
             {/* <Stack.Screen name="Drawer" component={Drawer} /> */}
           </>
         ) : (

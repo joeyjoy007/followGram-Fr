@@ -9,7 +9,7 @@ import Reels from './reels/Reels';
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopBar = ({postUrl}) => {
+const TopBar = ({postUrl, reelUrl}) => {
   return (
     <View style={{height: 400}}>
       <Tab.Navigator
@@ -49,7 +49,7 @@ const TopBar = ({postUrl}) => {
               </View>
             ),
           }}>
-          {props => <Reels {...props} postUrl={postUrl} />}
+          {props => <Reels {...props} reelUrl={reelUrl} />}
         </Tab.Screen>
         <Tab.Screen
           options={{
