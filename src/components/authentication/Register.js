@@ -13,6 +13,7 @@ import * as ImagePicker from 'react-native-image-picker';
 import {getApps, initializeApp} from 'firebase/app';
 import {ref, uploadBytes, getDownloadURL, getStorage} from 'firebase/storage';
 import {firebaseConfig} from '../../firebase/firebase';
+import {uploadImages} from '../utils/uploadImage';
 
 const Register = ({navigation}) => {
   const [formState, setFormState] = useState({
@@ -62,63 +63,9 @@ const Register = ({navigation}) => {
   };
 
   const uploadImage = () => {
-    handleImagePicked(imageUri);
+    // handleImagePicked(imageUri);
+    uploadImages(imageUri, setImage, setFields);
   };
-
-  const handleImagePicked = async pickerResult => {
-    // setLoading(true)
-    try {
-      if (!pickerResult.cancelled) {
-        const uploadUrl = await uploadImageAsync(pickerResult.assets[0].uri);
-        console.log(4);
-        setImage(uploadUrl);
-        setFields('profilePic', uploadUrl);
-
-        // setUpload(false);
-        alert('Image uploaded successfully');
-
-        // setTimeout(() => {
-        //   setProgress(0);
-        // }, 2000);
-      }
-      // setLoading(false)
-      // setChangeButton(true)
-    } catch (e) {
-      // setLoading(false)
-      alert(e.message);
-    } finally {
-      // setUpload(false)
-    }
-  };
-
-  async function uploadImageAsync(uri) {
-    const blob = await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-        resolve(xhr.response);
-      };
-      xhr.onerror = function (e) {
-        reject(new TypeError('Network request failed'));
-      };
-
-      xhr.responseType = 'blob';
-      console.log(1);
-      xhr.open('GET', uri, true);
-      console.log(2);
-      xhr.send(null);
-    });
-    const fileRef = ref(
-      getStorage(),
-      `UserProfile/${imageUri.assets[0].fileName}`,
-    );
-    console.log(5);
-    const result = await uploadBytes(fileRef, blob);
-
-    // We're done with the blob, close and release it
-    blob.close();
-
-    return await getDownloadURL(fileRef);
-  }
 
   return (
     <View style={styles.main}>

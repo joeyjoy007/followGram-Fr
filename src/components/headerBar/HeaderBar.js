@@ -1,9 +1,10 @@
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import BackIcon from 'react-native-vector-icons/AntDesign';
 import AddPost from 'react-native-vector-icons/Octicons';
 import Menu from 'react-native-vector-icons/MaterialCommunityIcons';
 import Reel from 'react-native-vector-icons/Ionicons';
+import * as ImagePicker from 'react-native-image-picker';
 
 const HeaderBar = ({
   title,
@@ -16,8 +17,35 @@ const HeaderBar = ({
   backgroundColor,
   showAdd,
 }) => {
+  const [imageUri, setImageUri] = useState('');
+
   const widths = Dimensions.get('screen').width;
 
+  const openGallery = async () => {
+    const pickerResult = await ImagePicker.launchImageLibrary({
+      mediaType: 'mixed',
+      aspect: [4, 3],
+      allowsEditing: true,
+    });
+    setImageUri(pickerResult);
+    if (pickerResult.assets[0].uri) {
+      console.log(pickerResult.assets[0].uri);
+    }
+  };
+
+  // const openCamera = async () => {
+  //   let pickerResult = await ImagePicker.launchImageLibrary({
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     mediaType: 'mixed',
+  //   });
+
+  //   setImageUri(pickerResult);
+  //   if (pickerResult.assets[0].uri) {
+  //     // setUpload(true);
+  //     console.log(pickerResult);
+  //   }
+  // };
   return (
     <View
       style={{
@@ -68,7 +96,7 @@ const HeaderBar = ({
                 elevation: 1,
                 display: showAdd === true ? 'flex' : 'none',
               }}>
-              <Pressable>
+              <Pressable onPress={() => openGallery()}>
                 <View
                   style={{
                     flexDirection: 'row',
