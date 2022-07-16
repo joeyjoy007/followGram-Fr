@@ -11,7 +11,6 @@ import React, {useState} from 'react';
 import {createUser} from '../../server/apis/user';
 import * as ImagePicker from 'react-native-image-picker';
 import {getApps, initializeApp} from 'firebase/app';
-import {ref, uploadBytes, getDownloadURL, getStorage} from 'firebase/storage';
 import {firebaseConfig} from '../../firebase/firebase';
 import {uploadImages} from '../utils/uploadImage';
 
@@ -25,6 +24,7 @@ const Register = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
   const [imageUri, setImageUri] = useState('');
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const setFields = (key, value) => {
     setFormState({...formState, [key]: value});
@@ -64,7 +64,7 @@ const Register = ({navigation}) => {
 
   const uploadImage = () => {
     // handleImagePicked(imageUri);
-    uploadImages(imageUri, setImage, setFields);
+    uploadImages(imageUri, setImage, setFields, 'UserProfile', setIsUploaded);
   };
 
   return (

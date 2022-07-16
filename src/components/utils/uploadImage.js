@@ -1,23 +1,54 @@
 import {ref, uploadBytes, getDownloadURL, getStorage} from 'firebase/storage';
+import {createPost} from '../../server/apis/post';
 
-export const uploadImages = (imageUri, setImage, setFields) => {
-  handleImagePicked(imageUri, setImage, setFields);
+export const uploadImages = (
+  imageUri,
+  setImage,
+  setFields,
+  imagePath,
+  setIsUploaded,
+  userId,
+) => {
+  handleImagePicked(
+    imageUri,
+    setImage,
+    setFields,
+    imagePath,
+    setIsUploaded,
+    userId,
+  );
 };
 
-const handleImagePicked = async (pickerResult, setImage, setFields) => {
+const handleImagePicked = async (
+  pickerResult,
+  setImage,
+  setFields,
+  imagePath,
+  setIsUploaded,
+  userId,
+) => {
   // setLoading(true)
   try {
     if (!pickerResult.cancelled) {
       const uploadUrl = await uploadImageAsync(
         pickerResult.assets[0].uri,
         pickerResult,
+        imagePath,
       );
       console.log(4);
       setImage(uploadUrl);
       setFields('profilePic', uploadUrl);
 
       // setUpload(false);
-      alert('Image uploaded successfully');
+      setIsUploaded(true);
+      try {
+        return await createPost({
+          user: userId._id,
+          postAddressUrl: uploadUrl,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
 
       // setTimeout(() => {
       //   setProgress(0);
@@ -33,7 +64,7 @@ const handleImagePicked = async (pickerResult, setImage, setFields) => {
   }
 };
 
-async function uploadImageAsync(uri, imageUri) {
+async function uploadImageAsync(uri, imageUri, imagePath) {
   const blob = await new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -51,7 +82,7 @@ async function uploadImageAsync(uri, imageUri) {
   });
   const fileRef = ref(
     getStorage(),
-    `UserProfile/${imageUri.assets[0].fileName}`,
+    `${imagePath}/${imageUri.assets[0].fileName}`,
   );
   console.log(5);
   const result = await uploadBytes(fileRef, blob);

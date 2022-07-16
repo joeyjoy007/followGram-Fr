@@ -12,13 +12,14 @@ const HeaderBar = ({
   post,
   back,
   backFunction,
-  openDrawer,
   addPost,
   backgroundColor,
   showAdd,
+  setImageUri,
+  navigation,
+  userInfo,
+  openBottomSheet,
 }) => {
-  const [imageUri, setImageUri] = useState('');
-
   const widths = Dimensions.get('screen').width;
 
   const openGallery = async () => {
@@ -27,25 +28,17 @@ const HeaderBar = ({
       aspect: [4, 3],
       allowsEditing: true,
     });
-    setImageUri(pickerResult);
+
     if (pickerResult.assets[0].uri) {
       console.log(pickerResult.assets[0].uri);
+      setImageUri(pickerResult.assets[0].uri);
+      navigation.navigate('Image', {
+        imageUrl: pickerResult,
+        userDetail: userInfo,
+      });
     }
   };
 
-  // const openCamera = async () => {
-  //   let pickerResult = await ImagePicker.launchImageLibrary({
-  //     allowsEditing: true,
-  //     aspect: [4, 3],
-  //     mediaType: 'mixed',
-  //   });
-
-  //   setImageUri(pickerResult);
-  //   if (pickerResult.assets[0].uri) {
-  //     // setUpload(true);
-  //     console.log(pickerResult);
-  //   }
-  // };
   return (
     <View
       style={{
@@ -131,7 +124,9 @@ const HeaderBar = ({
           </View>
         ) : null}
         {menu === true ? (
-          <Pressable onPress={() => openDrawer()} style={{alignSelf: 'center'}}>
+          <Pressable
+            onPress={() => openBottomSheet()}
+            style={{alignSelf: 'center', paddingHorizontal: 5}}>
             <Menu style={{color: '#ffffff'}} name="menu" size={28} />
           </Pressable>
         ) : null}

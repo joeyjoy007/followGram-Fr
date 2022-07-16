@@ -1,10 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import PhotosGrid from './photosGrid/PhotosGrid';
 import TagPhoto from './tagPhoto/TagPhoto';
 import Grid from 'react-native-vector-icons/Ionicons';
 import Tag from 'react-native-vector-icons/MaterialCommunityIcons';
+import Reels from './reels/Reels';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -29,6 +30,26 @@ const TopBar = ({postUrl}) => {
             ),
           }}>
           {props => <PhotosGrid {...props} postUrl={postUrl} />}
+        </Tab.Screen>
+        <Tab.Screen
+          name="Reels"
+          options={{
+            tabBarIcon: ({focused}) => (
+              // <LikeIcon name="hearto" color={color} size={21} />
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                  source={require('../../../utils/instagram-reels.png')}
+                  style={{
+                    width: 21,
+                    height: 21,
+                    alignSelf: 'center',
+                    tintColor: focused ? 'white' : 'grey',
+                  }}
+                />
+              </View>
+            ),
+          }}>
+          {props => <Reels {...props} postUrl={postUrl} />}
         </Tab.Screen>
         <Tab.Screen
           options={{

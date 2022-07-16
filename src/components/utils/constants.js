@@ -8,7 +8,7 @@ export const peakyImage = [
 export const headerTitleStyle = {
   color: '#ffffff',
   fontSize: 21,
-  fontWeight: '400',
+  fontWeight: 'bold',
   paddingHorizontal: 10,
 };
 

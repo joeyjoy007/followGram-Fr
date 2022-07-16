@@ -20,6 +20,7 @@ import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 import Add from 'react-native-vector-icons/AntDesign';
 import HeaderBar from '../headerBar/HeaderBar';
 import {headerTitleStyle} from '../utils/constants';
+import {Storage} from '../../storage/Storage';
 
 const SearchedUser = ({route, navigation}) => {
   const {_id} = route.params.details;
@@ -32,7 +33,7 @@ const SearchedUser = ({route, navigation}) => {
   useEffect(() => {
     let fetchUser = async () => {
       try {
-        const info = await userInfo;
+        const info = await Storage.getItem('userInfo');
         const user = await fetchSingleUser({_id: _id});
         setUserDetail(user.payload);
         setLength({
@@ -60,7 +61,7 @@ const SearchedUser = ({route, navigation}) => {
 
   const setFollowing = async () => {
     try {
-      const info = await userInfo;
+      const info = await Storage.getItem('userInfo');
       const follow = await followUser({_id: info.user._id, _id1: _id});
 
       if (follow.status === 1) {
@@ -74,7 +75,7 @@ const SearchedUser = ({route, navigation}) => {
 
   const unFollow = async () => {
     try {
-      const info = await userInfo;
+      const info = await Storage.getItem('userInfo');
       const follow = await unFollowUser({_id: info.user._id, _id1: _id});
 
       if (follow.status === 1) {

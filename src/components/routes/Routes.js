@@ -14,6 +14,7 @@ import Followers from '../showFollweersAndFollowing/Followers';
 import TopBar from '../instaGramTabBar/bottomTabBar/mainField/TopBar';
 import HeaderBar from '../headerBar/HeaderBar';
 import Drawer from '../drawer/Drawer';
+import AfterImageAdd from '../instaGramTabBar/tabBarItems/user/AfterImageAdd';
 
 const Stack = createNativeStackNavigator();
 const Routes = () => {
@@ -74,6 +75,7 @@ const Routes = () => {
           const response = await loginUser(data);
           console.log(response.status);
           if (response.status === 1) {
+            console.log(response.payload);
             await Storage.setItem('token', response.payload.token);
             // await Storage.setItem('userType', response.payload.user.type);
             const getToken = await Storage.getItem('token');
@@ -148,7 +150,8 @@ const Routes = () => {
             <Stack.Screen name="SearchedUser" component={SearchedUser} />
             <Stack.Screen name="Followers" component={Followers} />
             <Stack.Screen name="HeaderBar" component={HeaderBar} />
-            <Stack.Screen name="Drawer" component={Drawer} />
+            <Stack.Screen name="Image" component={AfterImageAdd} />
+            {/* <Stack.Screen name="Drawer" component={Drawer} /> */}
           </>
         ) : (
           <Stack.Screen name="Auth" component={RootStackScreen} />
